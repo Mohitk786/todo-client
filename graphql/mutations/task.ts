@@ -20,3 +20,28 @@ export const DELETE_TASK = gql`
     deleteTask(id: $id)
   }
 `;
+
+export const EDIT_TASK = gql`
+  mutation EditTask(
+    $id: ID!
+    $title: String
+    $description: String
+    $priority: String
+    $dueDate: String
+  ) {
+    editTask(
+      id: $id
+      title: $title
+      description: $description
+      priority: $priority
+      dueDate: $dueDate
+    ) {
+      id
+      title
+      description
+      priority
+      dueDate
+      completed
+    }
+  }
+`;

@@ -17,7 +17,4 @@ export interface Task {
   updatedAt?: string;
 }
 
-export interface TaskCardProps {
-  task: Task;
-  refetch: () => void;
-}
+
