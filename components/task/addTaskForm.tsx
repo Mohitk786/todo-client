@@ -14,9 +14,9 @@ interface TaskFormProps {
 
 export default function AddTaskForm({ isOpen, onOpenChange }: TaskFormProps) {
   const [taskData, setTaskData] = useState({
-    title: "New Task",
-    description: "new task description",
-    priority: "high",
+    title: "title",
+    description: "description",
+    priority: "",
     dueDate: "2022-12-31",
   });
 

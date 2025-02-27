@@ -2,10 +2,18 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { fetchTasks } from '@/lib/taskService';
+import { Task } from '@/types/taskTypes';
+
+interface FetcTasksResponse {
+  getTasks: Task[];
+}
 
 export function useTasks() {
   return useQuery({
     queryKey: ['tasks'],
-    queryFn: fetchTasks,
+    queryFn: async () => {
+      const response:FetcTasksResponse = await fetchTasks()
+      return response?.getTasks;
+    },
   });
 }
