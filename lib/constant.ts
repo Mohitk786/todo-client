@@ -1,1 +1,1 @@
-export const BASE_URL:string = "http://localhost:8000/graphql";
+export const BASE_URL:string = "https://todo-server-oq3u.onrender.com/graphql";
