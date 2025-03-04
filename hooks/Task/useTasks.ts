@@ -1,19 +1,12 @@
 "use client";
 
-import { useQuery } from '@tanstack/react-query';
-import { fetchTasks } from '@/lib/taskService';
-import { Task } from '@/types/taskTypes';
-
-interface FetcTasksResponse {
-  getTasks: Task[];
-}
+import { useQuery } from "@tanstack/react-query";
+import { fetchTasks } from "@/lib/taskService";
+import { GetTasksQuery } from "@/src/generated/graphql"; // Ensure correct path
 
 export function useTasks() {
-  return useQuery({
-    queryKey: ['tasks'],
-    queryFn: async () => {
-      const response:FetcTasksResponse = await fetchTasks()
-      return response?.getTasks;
-    },
+  return useQuery<GetTasksQuery["getTasks"], Error>({
+    queryKey: ["tasks"],
+    queryFn: fetchTasks, // Directly use fetchTasks since it already returns `getTasks`
   });
 }

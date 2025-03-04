@@ -1,19 +1,20 @@
 "use client";
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addTask } from '@/lib/taskService';
-import toast from 'react-hot-toast';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addTask } from "@/lib/taskService";
+import { MutationAddTaskArgs } from "@/src/generated/graphql";
+import toast from "react-hot-toast";
 
 export function useAddTask() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: addTask,
+    mutationFn: (variables: MutationAddTaskArgs) => addTask(variables),
     onSuccess: () => {
       toast.success("Task added successfully!");
-      queryClient.invalidateQueries({ queryKey: ['tasks'] });
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       toast.error(`Failed to add task: ${error.message}`);
     },
   });
